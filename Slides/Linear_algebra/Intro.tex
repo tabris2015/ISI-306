@@ -1,0 +1,422 @@
+\documentclass[10pt]{beamer}
+
+\usepackage[spanish, mexico]{babel}
+\usepackage[utf8]{inputenc}
+
+\usetheme[progressbar=frametitle]{metropolis}
+\usepackage{appendixnumberbeamer}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+\usepackage{booktabs}
+\usepackage[scale=2]{ccicons}
+
+\usepackage{tikz}
+\def\checkmark{\tikz\fill[scale=0.4](0,.35) -- (.25,0) -- (1,.7) -- (.25,.15) -- cycle;}
+\usepackage{pgfplots}
+\usepgfplotslibrary{dateplot}
+
+\usepackage{xspace}
+\newcommand{\themename}{\textbf{\textsc{metropolis}}\xspace}
+
+%%
+\usepackage{color}
+\definecolor{lstgrey}{rgb}{0.95,0.95,0.95}
+\definecolor{mygreen}{RGB}{28,172,0} % color values Red, Green, Blue
+\definecolor{mylilas}{RGB}{170,55,241}
+
+\usepackage{listings}
+\lstset{language=Python,
+       backgroundcolor=\color{lstgrey},
+       frame=single,
+       basicstyle=\footnotesize\ttfamily,
+       captionpos=b,
+       tabsize=2,
+  }
+
+\lstset{language=Python,%
+  %basicstyle=\color{red},
+  breaklines=true,%
+  morekeywords={python2tikz},
+  keywordstyle=\color{blue},%
+  morekeywords=[2]{1}, keywordstyle=[2]{\color{black}},
+  identifierstyle=\color{black},%
+  stringstyle=\color{mylilas},
+  commentstyle=\color{mygreen},%
+  showstringspaces=false,%without this there will be a symbol in the places where there is a space
+  numbers=left,%
+  numberstyle={\tiny \color{black}},% size of the numbers
+  numbersep=9pt, % this defines how far the numbers are from the text
+  emph=[1]{for,end,break},emphstyle=[1]\color{red}, %some words to emphasise
+  %emph=[2]{word1,word2}, emphstyle=[2]{style},    
+}
+%
+
+\lstset{language=C,
+       backgroundcolor=\color{lstgrey},
+       frame=single,
+       basicstyle=\footnotesize\ttfamily,
+       captionpos=b,
+       tabsize=2,
+  }
+
+\lstset{language=C,%
+  %basicstyle=\color{red},
+  breaklines=true,%
+  morekeywords={c2tikz},
+  keywordstyle=\color{blue},%
+  morekeywords=[2]{1}, keywordstyle=[2]{\color{black}},
+  identifierstyle=\color{black},%
+  stringstyle=\color{mylilas},
+  commentstyle=\color{mygreen},%
+  showstringspaces=false,%without this there will be a symbol in the places where there is a space
+  numbers=left,%
+  numberstyle={\tiny \color{black}},% size of the numbers
+  numbersep=9pt, % this defines how far the numbers are from the text
+  emph=[1]{for,end,break},emphstyle=[1]\color{red}, %some words to emphasise
+  %emph=[2]{word1,word2}, emphstyle=[2]{style},    
+}
+%
+
+
+\title{ISI306 - Aprendizaje Automático}
+\subtitle{Repaso de álgebra lineal}
+\date{\today}
+% \date{}
+\author{Ing. Jose Eduardo Laruta Espejo}
+\institute{Universidad La Salle - Bolivia}
+% \titlegraphic{\hfill\includegraphics[height=1.5cm]{logo.pdf}}
+
+\begin{document}
+
+\maketitle
+
+\begin{frame}[allowframebreaks]{Contenido}
+  \setbeamertemplate{section in toc}[sections numbered]
+  \tableofcontents[]
+\end{frame}
+
+%%%
+
+
+
+\section{Conceptos básicos y Notación}
+\begin{frame}
+    \frametitle{Conceptos básicos y Notación}
+    El campo del álgebra lineal nos presenta formas muy eficientes de 
+    representar y realizar operaciones con grupos de números ordenados o conjuntos
+    de ecuaciones lineales, por ejemplo:
+    
+    \begin{align*}
+        4x_1 - 5x_2 &= -13 \\
+        -2x_1 + 3x_2 &= 9
+    \end{align*}
+
+    El mismo conjunto de ecuaciones se puede representar en forma matricial $ Ax = b$ siendo:
+    \begin{align*}
+        A = \begin{bmatrix}
+            4 & -5 \\
+            -2 & 3
+        \end{bmatrix}
+        , 
+        b = \begin{bmatrix}
+            -13 \\ 
+            9
+        \end{bmatrix}
+    \end{align*}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Notación}
+    Se usará la siguiente notación:
+    \begin{itemize}
+        \item $A \in \mathbb{R}^{m\times n}$ denota una matriz con $m$ filas y $n$ columnas, donde los elementos de $A$ son reales.
+        \item $x \in \mathbb{R}^n$ denota un vector con $n$ elementos. Por convención un vector $n$-dimensional también se representa como una matriz con $n$ filas y 1 columna.
+        \item El $i$ésimo elemento de un vector $x$ se denota como $x_i$.
+            \begin{equation}
+                x = \begin{bmatrix}
+                    x_1 \\
+                    x_2 \\
+                    \vdots \\
+                    x_n
+                \end{bmatrix}
+            \end{equation}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Notación}
+    \begin{itemize}
+        \item $a_{ij}$ (o $A_{ij}, A_{i,j}$) es un elemento de $A$ en la fila $i$ y la columna $j$:
+            \begin{equation}
+                A = \begin{bmatrix}
+                    a_{11} & a_{12} & \cdots & a_{1n} \\
+                    a_{21} & a_{12} & \cdots & a_{2n} \\
+                    \vdots & \vdots & \ddots & \vdots \\
+                    a_{m1} & a_{m2} & \cdots & a_{mn} 
+                \end{bmatrix}
+            \end{equation}
+        \item $a_{j}$ o $A_{:,j}$ es la $j$-ésima columna de la matriz $A$:
+            \begin{equation}
+                A = \begin{bmatrix}
+                    | & | &   & | \\
+                    a_1 & a_2 & \cdots & a_n \\
+                    | & | &   & | 
+                \end{bmatrix}
+            \end{equation}
+        \item $a_{i}^T$ o $A_{i,:}$ es la $i$-ésima fila de la matriz $A$:
+            \begin{equation}
+                A = \begin{bmatrix}
+                    \text{\textemdash} & a_1^T & \text{\textemdash} \\
+                    \text{\textemdash} & a_2^T & \text{\textemdash} \\
+                          & \vdots &  \\
+                    \text{\textemdash} & a_m^T & \text{\textemdash} \\
+                \end{bmatrix}
+            \end{equation}
+    \end{itemize}
+\end{frame}
+
+
+\section{Multiplicación de matrices}
+
+\begin{frame}
+    \frametitle{Multiplicación de matrices}
+    Dadas las matrices $A \in \mathbb{R}^{m\times n}$ y $B \in \mathbb{R}^{n\times p}$ el 
+    producto matricial es:
+    \begin{equation}
+        C = AB \in \mathbb{R}^{m \times p}
+    \end{equation}
+    donde:
+    \begin{equation}
+        C_{ij}= \sum_{k = 1}^n A_{ik}B_{kj}
+    \end{equation}
+    nótese que, para que el producto matricial exista, el número de columnas de $A$ debe 
+    ser igual al número de filas de $B$. En tal caso se denominan matrices conformables.
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Producto de vectores}
+    Dados dos vectores $x,y \in \mathbb{R}^n$, el producto $x^T y$ se suele llamar el \textbf{producto interno}
+    o \textbf{producto escalar}, el resultado es un escalar:
+    
+    \begin{equation}
+        x^Ty \in \mathbb{R}^n = [x_1 \ x_2 \ \cdots \ x_n]\begin{bmatrix}
+            y_1\\
+            y_2\\
+            \vdots \\
+            y_n
+        \end{bmatrix} = \sum_{i=1}^n x_i y_i
+    \end{equation}
+    El producto escalar es solamente un caso especial de un producto matricial.
+    
+\end{frame}
+
+\begin{frame}
+    \frametitle{Producto de vectores}
+    Por otro lado, dados 2 vectores $x \in \mathbb{R}^m, y \in \mathbb{R}^n$ (no del mismo tamaño necesariamente)
+    el resultado de $xy^T$ se conoce como el \textbf{producto externo} o \textbf{producto vectorial} y 
+    es una matriz dada por $(xy^T)_{ij} = x_iy_j$
+
+    \begin{equation}
+        xy^T \in \mathbb{R}^n = \begin{bmatrix}
+            x_1\\
+            x_2\\
+            \vdots \\
+            x_n
+        \end{bmatrix} [y_1 \ y_2 \ \cdots \ y_n]= \begin{bmatrix}
+            x_1y_1 & x_1y_2 & \cdots & x_1y_n \\
+            x_2y_1 & x_2y_2 & \cdots & x_2y_n \\
+            \vdots & \vdots & \ddots & \vdots \\
+            x_m1y_1 & x_my_2 & \cdots & x_my_n
+        \end{bmatrix}
+    \end{equation}
+
+    Esta operación puede util para distintos casos, por ejemplo: repetir un vector en columnas de una matriz.
+\end{frame}
+
+\begin{frame}
+    \frametitle{Producto matriz-vector}
+    Dada la matrices $A \in \mathbb{R}^{m\times n}$ y un vector $x \in \mathbb{R}^n$, el producto da 
+    como resultado otro vector $y = Ax \in \mathbb{R}^m$
+
+    \begin{equation}
+        y = Ax = A = \begin{bmatrix}
+            \text{\textemdash} & a_1^T & \text{\textemdash} \\
+            \text{\textemdash} & a_2^T & \text{\textemdash} \\
+                  & \vdots &  \\
+            \text{\textemdash} & a_m^T & \text{\textemdash} \\
+            \end{bmatrix} x = \begin{bmatrix}
+             a_1^Tx \\
+             a_2^Tx \\
+             \vdots \\
+             a_m^Tx
+        \end{bmatrix}
+    \end{equation}
+
+    En este caso, el $i$-ésimo elemento de $y$ es el producto escalar de la $i$-ésima fila de $A$ 
+    y el vector $x$. También se puede hacer una pre multiplicación por un vector.
+\end{frame}
+
+\begin{frame}
+    \frametitle{Producto de matrices}
+    Entendiendo los productos entre vectores, el producto matricial se puede expresar en función 
+    de distintos productos escalares, dadas las matrices
+    $A \in \mathbb{R}^{m\times n}$ y $B \in \mathbb{R}^{n\times p}$:
+
+    \begin{equation}
+        C = AB = \begin{bmatrix}
+            \text{\textemdash} & a_1^T & \text{\textemdash} \\
+            \text{\textemdash} & a_2^T & \text{\textemdash} \\
+                  & \vdots &  \\
+            \text{\textemdash} & a_m^T & \text{\textemdash}
+            \end{bmatrix} \begin{bmatrix}
+                | & | &   & | \\
+                b_1 & b_2 & \cdots & b_p \\
+                | & | &   & | 
+            \end{bmatrix} = 
+            \begin{bmatrix}
+                a_1^Tb_1 & a_1^Tb_2 & \cdots & a_1^Tb_p \\
+                a_2^Tb_1 & a_2^Tb_2 & \cdots & a_2^Tb_p \\
+                \vdots & \vdots & \ddots & \vdots \\
+                a_m^Tby_1 & a_m^Tb_2 & \cdots & a_m^Tb_p
+            \end{bmatrix}
+    \end{equation}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Propiedades}
+    Es importante construir un entendimiento intuitivo de las operaciones entre matrices y vectores 
+    por su importancia en el desarrollo de los algoritmos de aprendizaje automático que se explorarán 
+    en el futuro y en su implementación en python. Adicionalmente, la multiplicación de matrices 
+    posee las siguientes propiedades:
+    \begin{itemize}
+        \item Asociatividad: $(AB)C = A(BC)$
+        \item Distributividad: $A(B + C) = AB + AC$
+        \item No es conmutativa: $AB \neq BA$
+    \end{itemize}
+    
+
+\end{frame}
+
+\section{Operaciones y propiedades}
+\begin{frame}
+    \frametitle{Matriz identidad}
+    La \textbf{matriz identidad}, denotada por $I \in \mathbb{R}^{n\times n}$, es una matriz cuadrada
+    con unos en la diagonal y ceros en otras posiciones:
+    \begin{equation}
+        I_{ij} = \begin{cases}
+            1 & i = j\\
+            0 & i \neq j
+        \end{cases}
+    \end{equation}
+    y tiene la propiedad que para toda matriz $A \in \mathbb{R}^{m\times n}$,
+    \begin{equation}
+        AI = A = IA
+    \end{equation}
+    Generalmene, las dimensiones de la matriz identidad $I$ se infieren del contexto en el que se usa.
+\end{frame}
+
+\begin{frame}
+    \frametitle{Matriz Diagonal}
+    En una \textbf{matriz diagonal} todos los elementos que no pertenecen a la diagonal son iguales a 0. 
+    Se suele denotar como $D = diag(d_1, d_2, \dots, d_n)$, donde:
+    \begin{equation}
+        D_{ij} = \begin{cases}
+            d_i & i = j \\
+            0 & i \neq j
+        \end{cases}
+    \end{equation}
+    Claramente, $I = diag(1, 1, \dots, 1)$
+\end{frame}
+
+\begin{frame}
+    \frametitle{Matriz Traspuesta}
+    La traspuesta de una matriz resulta de ``intercambiar'' las filas con las columnas. Dada una matriz 
+    $A \in \mathbb{R}^{m\times n}$, su traspuesta $A^T \in \mathbb{R}^{n\times m}$ es una matriz con dimensiones
+    $n \times m$ donde sus elementos estan definidos por:
+    \begin{equation}
+        (A^T)_{ij} = A_{ji}
+    \end{equation}
+    Tiene las siguientes propiedades:
+    \begin{itemize}
+        \item $(A^T)^T = A$
+        \item $(AB)^T = B^TA^T$
+        \item $(A + B)^T = A^T + B^T$
+    \end{itemize}
+    Una matriz cuadrada es \textbf{simétrica} si $A = A^T$. Y es \textbf{antisimétrica} si $A = -A^T$.
+\end{frame}
+
+\begin{frame}
+    \frametitle{Matriz inversa}
+    La inversa de una matriz $A \in \mathbb{R}^{m\times n}$, denotada por $A^{-1}$ y cumple>:
+    \begin{equation}
+        A^{-1}A = I = AA^{-1}
+    \end{equation}
+    No todas las matrices tienen inversa, por ejemplo, matrices no cuadradas, e incluso en el caso 
+    de algunas matrices cuadradas, la inversa puede no existir. Si $A$ posee inversa se dice que 
+    es una matriz \textbf{invertible} o \textbf{no singular}, en otro caso es \textbf{no invertible}
+    o \textbf{singular}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Matriz inversa}
+    La inversa de una matriz $A \in \mathbb{R}^{m\times n}$, denotada por $A^{-1}$ y cumple>:
+    \begin{equation}
+        A^{-1}A = I = AA^{-1}
+    \end{equation}
+    No todas las matrices tienen inversa, por ejemplo, matrices no cuadradas, e incluso en el caso 
+    de algunas matrices cuadradas, la inversa puede no existir. Si $A$ posee inversa se dice que 
+    es una matriz \textbf{invertible} o \textbf{no singular}, en otro caso es \textbf{no invertible}
+    o \textbf{singular}
+\end{frame}
+
+% \begin{frame}
+%     \frametitle{Determinante}
+%     El determinante de una matriz cuadrada $A \in \mathbb{R}^{n\times n}$, es una función 
+%     $det : \mathbb{R}^{n \times n} \leftarrow \mathbb{R}$ denotada por $|A|$ o $det(A)$
+%     \begin{equation}
+%         A^{-1}A = I = AA^{-1}
+%     \end{equation}
+%     No todas las matrices tienen inversa, por ejemplo, matrices no cuadradas, e incluso en el caso 
+%     de algunas matrices cuadradas, la inversa puede no existir. Si $A$ posee inversa se dice que 
+%     es una matriz \textbf{invertible} o \textbf{no singular}, en otro caso es \textbf{no invertible}
+%     o \textbf{singular}
+% \end{frame}
+
+\section{Cálculo y Matrices}
+\begin{frame}
+    \frametitle{Gradiente}
+    
+\end{frame}
+
+{\setbeamercolor{palette primary}{fg=black, bg=yellow}
+\begin{frame}[standout]
+  Preguntas?
+\end{frame}
+}
+{\setbeamercolor{palette primary}{fg=black, bg=yellow}
+\begin{frame}[standout]
+  Preguntas?
+\end{frame}
+}
+
+\appendix
+
+% \begin{frame}[fragile]{Backup slides}
+%   Sometimes, it is useful to add slides at the end of your presentation to
+%   refer to during audience questions.
+
+%   The best way to do this is to include the \verb|appendixnumberbeamer|
+%   package in your preamble and call \verb|\appendix| before your backup slides.
+
+%   \themename will automatically turn off slide numbering and progress bars for
+%   slides in the appendix.
+% \end{frame}
+
+% \begin{frame}[allowframebreaks]{Referencias}
+% .
+% \end{frame}
+
+\end{document}
