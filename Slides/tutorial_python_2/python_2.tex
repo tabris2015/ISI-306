@@ -1,0 +1,411 @@
+\documentclass[10pt]{beamer}
+
+\usepackage[spanish, mexico]{babel}
+\usepackage[utf8]{inputenc}
+
+\usetheme[progressbar=frametitle]{metropolis}
+\usepackage{appendixnumberbeamer}
+
+\usepackage{booktabs}
+\usepackage[scale=2]{ccicons}
+
+\usepackage{pgfplots}
+\usepgfplotslibrary{dateplot}
+
+\usepackage{xspace}
+\newcommand{\themename}{\textbf{\textsc{metropolis}}\xspace}
+
+%%
+\usepackage{color}
+\definecolor{lstgrey}{rgb}{0.95,0.95,0.95}
+\definecolor{mygreen}{RGB}{28,172,0} % color values Red, Green, Blue
+\definecolor{mylilas}{RGB}{170,55,241}
+
+\usepackage{listings}
+\lstset{language=Python,
+       backgroundcolor=\color{lstgrey},
+       frame=single,
+       basicstyle=\footnotesize\ttfamily,
+       captionpos=b,
+       tabsize=2,
+  }
+
+\lstset{language=Python,%
+  %basicstyle=\color{red},
+  breaklines=true,%
+  morekeywords={python2tikz},
+  keywordstyle=\color{blue},%
+  morekeywords=[2]{1}, keywordstyle=[2]{\color{black}},
+  identifierstyle=\color{black},%
+  stringstyle=\color{mylilas},
+  commentstyle=\color{mygreen},%
+  showstringspaces=false,%without this there will be a symbol in the places where there is a space
+  numbers=left,%
+  numberstyle={\tiny \color{black}},% size of the numbers
+  numbersep=9pt, % this defines how far the numbers are from the text
+  emph=[1]{for,end,break},emphstyle=[1]\color{red}, %some words to emphasise
+  %emph=[2]{word1,word2}, emphstyle=[2]{style},    
+}
+%
+
+\lstset{language=C,
+       backgroundcolor=\color{lstgrey},
+       frame=single,
+       basicstyle=\footnotesize\ttfamily,
+       captionpos=b,
+       tabsize=2,
+  }
+
+\lstset{language=C,%
+  %basicstyle=\color{red},
+  breaklines=true,%
+  morekeywords={c2tikz},
+  keywordstyle=\color{blue},%
+  morekeywords=[2]{1}, keywordstyle=[2]{\color{black}},
+  identifierstyle=\color{black},%
+  stringstyle=\color{mylilas},
+  commentstyle=\color{mygreen},%
+  showstringspaces=false,%without this there will be a symbol in the places where there is a space
+  numbers=left,%
+  numberstyle={\tiny \color{black}},% size of the numbers
+  numbersep=9pt, % this defines how far the numbers are from the text
+  emph=[1]{for,end,break},emphstyle=[1]\color{red}, %some words to emphasise
+  %emph=[2]{word1,word2}, emphstyle=[2]{style},    
+}
+%
+
+
+\title{Introducción a la programación con Python 3}
+\subtitle{Conceptos fundamentales}
+\date{\today}
+% \date{}
+\author{Ing. Jose Eduardo Laruta Espejo}
+\institute{Universidad La Salle}
+% \titlegraphic{\hfill\includegraphics[height=1.5cm]{../img/lasalle}}
+
+\begin{document}
+
+\maketitle
+
+\begin{frame}[allowframebreaks]{Contenido}
+  \setbeamertemplate{section in toc}[sections numbered]
+  \tableofcontents[]
+\end{frame}
+
+%%%
+
+\section{Estructuras de datos}
+\subsection{Listas}
+
+\begin{frame}[fragile]{Listas}
+    \begin{itemize}
+        \item Las \alert{Listas} almacenan una secuencia de objetos mutables.
+        \item Los objetos almacenados no tienen que ser del mismo tipo.
+    \end{itemize}
+
+\begin{lstlisting}
+>>> frutas = ['manzana', 'durazno', 'pera', 'banana']
+>>> frutas[0]
+'manzana'
+>>> otras_frutas = ['naranja', 'papaya', 'kiwi']
+>>> frutas + otras_frutas
+['manzana', 'durazno', 'pera', 'banana', 'naranja', 'papaya', 'kiwi']
+\end{lstlisting}
+
+\end{frame}
+
+\begin{frame}[fragile]{Listas}
+    Se puede acceder a un elemento de una lista usando el operador \texttt{[]}
+
+\begin{lstlisting}
+>>> frutas[0]
+'manzana'
+>>> frutas[2]
+'pera'
+>>> frutas[-1]
+'banana'
+\end{lstlisting}
+
+\end{frame}
+
+\begin{frame}[fragile]{Listas}
+Se puede acceder a varios elementos contiguos con el operador slice
+usando la siguiente forma general: \texttt{frutas[inicio, fin]} va a 
+retornar los elementos en los indices \texttt{inicio, inicio+1, ..., fin-1}.
+
+\begin{lstlisting}
+>>> frutas[0:2]
+['manzana', 'durazno']
+>>> frutas[:3]
+['manzana', 'durazno', 'pera']
+>>> frutas[2:]
+['pera', 'banana']
+\end{lstlisting}
+
+\end{frame}
+
+\begin{frame}[fragile]{Listas}
+Las listas pueden contener cualquier objeto de Python. Podemos 
+tener listas de listas.
+\begin{lstlisting}
+>>> matriz = [[1, 2, 3], [4, 5, 6]]
+>>> matriz[1][2]
+6
+>>> lista = ['hola', 2, ['a', 2, 'adios'], 45]
+>>> lista[-1]
+45
+\end{lstlisting}
+Ejercicio: explorar métodos de una lista con el comando \texttt{dir(lista)} y 
+consultar su documentación con \texttt{help(lista.metodo)}
+\end{frame}
+
+
+\begin{frame}[fragile]{Tuplas}
+Las tuplas son estructuras similares a las listas con la diferencia de 
+que son inmutables, es decir, sus elementos no se pueden cambiar luego de 
+crearse la tupla.
+\begin{lstlisting}
+>>> par = (3, 4)
+>>> par[0]
+3
+>>> x, y = par
+>>> y
+4
+>>> par[1] = 6
+\end{lstlisting}
+Ejercicio: explorar métodos de una lista con el comando \texttt{dir(lista)} y 
+consultar su documentación con \texttt{help(lista.metodo)}
+\end{frame}
+
+\begin{frame}[fragile]{Conjuntos(Sets)}
+Los conjuntos (Sets) son estructuras no ordenadas que no pueden tener items duplicados.
+Se puede crear un Set a partir de una lista.
+\begin{lstlisting}
+>>> formas = ['circulo', 'cuadrado', 'rombo', 'triangulo']
+>>> set_formas = set(formas)
+>>> set_formas2 = {'circulo', 'cuadrado', 'rombo', 'triangulo'}
+\end{lstlisting}
+Se pueden aplicar operaciones comunes de conjuntos (Unión, intersección) a los 
+sets de Python.
+\end{frame}
+
+\begin{frame}[fragile]{Diccionarios}
+Una de las estructuras más útiles de Python es el Diccionario, el cual almacena 
+un mapeo de un tipo de datos (key) a otro tipo (value). El key debe ser un tipo inmutable, 
+mientras que el value puede ser cualquier tipo de python.
+\begin{lstlisting}
+>>> estudiante = {'nombre':'jose', 'edad':22, 'notas':[78, 90, 88]}
+>>> estudiante['notas']
+[78, 90, 88]
+>>> estudiante.keys()
+['nombre', 'edad', 'notas']
+>>> estudiante.values()
+['jose', 22, [78. 90, 88]]
+>>> estudiante.items()
+[('nombre','jose'), ('edad',22), ('notas',[78, 90, 88])]
+>>> len(estudiante)
+3
+\end{lstlisting}
+Al igual que con las listas anidadas, se pueden crear diccionaros de diccionarios.
+\end{frame}
+
+
+
+\begin{frame}[fragile]{Scripts de python}
+El intérprete de python puede ejecutar comandos de forma interactiva, pero para 
+tareas de programación más serias y completas usaremos archivos de código fuente 
+denominados \texttt{scripts}.
+Un script es un conjunto de sentencias de python que se ejecutan de forma ordenada.
+
+\begin{lstlisting}
+# esto es un comentario
+frutas = ['manzana', 'durazno', 'pera', 'banana']
+for fruta in frutas:
+    print(fruta + ' a la venta')
+frutasdic = ['manzana':15, 'durazno':20, 'pera':10, 'banana':5]
+for fruta, precio in frutasdic.items():
+    if precio < 12:
+        print('el precio de la {} es {}'.format fruta, precio)
+    else:
+        print('{} es una fruta muy cara'.format(fruta))
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Scripts de python}
+Para ejecutar un script de python se debe invocar al intérprete 
+ingresando el nombre del archivo como argumento.
+\begin{lstlisting}
+$ python frutas.py
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{List Comprehension}
+Se puede construir una lista en python usando una forma de notación especial que se  define en 
+una expresión dentro de la lista.
+\begin{lstlisting}
+nums = [1,2,3,4,5,6]
+masuno = [x + 1 for x in nums]
+impares = [x for x in nums if x % 2 == 1]
+impares_mas_uno = [x + 1 for x in nums if x % 2 == 1]
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{List Comprehension (Ejercicio)}
+Dada la siguiente lista, escriba un list comprehension que genere una versión en 
+minúsculas de cada cadena que tenga longitud mayor que 5.
+\begin{lstlisting}
+nums = ['Hola',
+        'escuDEro',
+        'Buenos Dias',
+        'ADIOS',
+        'RinoceronTE',
+        'algoritmos',
+        'Inteligencia Artificial']
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Funciones}
+Al igual que en Java o en C++, en Python podemos declarar nuestras propias 
+funciones:
+\begin{lstlisting}
+frutas = ['manzana':15, 'durazno':20, 'pera':10, 'banana':5]
+
+def comprarFruta(fruta, kilos):
+    if fruta not in frutas:
+        print('Lo siento, no contamos con {}'.format fruta)
+    else:
+        costo = frutas[fruta] * kilos
+        print('Son {} Bolivianos, por favor'.format(costo))
+    
+comprarFruta('pera', 2)
+comprarFruta('mango', 10)
+\end{lstlisting}
+\end{frame}
+
+
+
+\begin{frame}[fragile]{Clases y Objetos}
+Un objeto encapsula datos y provee funciones para interactuar con los datos. En 
+Python se pueden definir objetos personalizados usando Clases.
+\begin{lstlisting}
+class Perro:
+    def __init__(self, nombre, raza, edad):
+        self.nombre = nombre 
+        self.raza = raza 
+        self.edad = edad 
+    def ladrar(self):
+        print('guau')
+    def saludar(self):
+        print('guau, soy {} y soy de raza {}'.format(self.nombre, self.raza))
+\end{lstlisting}
+Encapsular datos previene su uso inadecuado. 
+
+La abstracción de objeto permite escribir código más sencillo de entender.
+\end{frame}
+
+\begin{frame}[fragile]{Clases y Objetos}
+Para aprovechar las ventajas de los objetos se debe instanciar los mismos 
+en código.
+\begin{lstlisting}
+cachuchin = Perro('cachuchin', 'chapi', 9)
+cachuchin.ladrar()
+cachuchin.saludar()
+
+lassie = Perro('lassie', 'collie', 7)
+lassie.saludar()
+\end{lstlisting}
+Encapsular datos previene su uso inadecuado. 
+
+La abstracción de objeto permite escribir código más sencillo de entender.
+\end{frame}
+
+\section{Práctica de Laboratorio 1}
+
+\begin{frame}[fragile]{Laboratorio 1}
+El Laboratorio 1 tiene como objetivo introducir a la programación con Python, 
+se cuenta con un proyecto autoevaluado sobre el cual el estudiante tendrá que realizar
+modificaciones segun los ejercicios.
+El archivo con lo necesario se encuentra en \href{https://inst.eecs.berkeley.edu/~cs188/fa18/assets/files/tutorial.zip}{este link}
+\end{frame}
+
+\begin{frame}[fragile,allowframebreaks]{Instrucciones}
+Una vez descargado el archivo, descomprimir el contenido en alguna carpeta destinada a 
+proyectos de programación. dentro de la carpeta encontrará varios archivos de python.
+
+Para este Laboratorio, se tienen un conjunto de archivos que deberán editar:
+\begin{itemize}
+    \item \texttt{addition.py}: ejercicio 1
+    \item \texttt{buyLotsOfFruit.py}: ejercicio 2
+    \item \texttt{shop.py}: ejercicio 3
+    \item \texttt{shopSmart.py}: ejercicio 3
+\end{itemize}
+Una vez editados los archivos correspondientes a los ejercicios, deberá ejecutar el autoevaluador 
+para comprobar la solución.
+
+El archivo para evaluar los ejercicios se llama \texttt{autograder.py}
+
+Para ejecutar la evaluación de los ejercicios:
+\begin{lstlisting}
+$ python autograder.py
+\end{lstlisting}
+Los archivos restantes se pueden ignorar, no los toque.
+
+\end{frame}
+
+\begin{frame}[fragile,allowframebreaks]{Ejercicio 1 (ejemplo)}
+Abrir el archivo \texttt{addition.py} y ver la definición de \texttt{add}:
+\begin{lstlisting}
+def add(a, b):
+    "Return the sum of a and b"
+    "*** YOUR CODE HERE ***"
+    return 0
+\end{lstlisting}
+Modificar de la siguiente manera:
+\begin{lstlisting}
+def add(a, b):
+    "Retorna la suma de a y b"
+    print('a={}, b={}, retornando a+b={}'.format(a,b,a+b))
+    return a+b
+\end{lstlisting}
+Correr a evaluacion:
+\begin{lstlisting}
+$ python autograder.py -q q1
+\end{lstlisting}
+\end{frame}
+
+
+
+\begin{frame}[fragile]{Ejercicio 2}
+Añadir una función llamada \texttt{buyLotsOfFruit(orderList)} al archivo \texttt{buyLotsOfFruit.py}
+que tome como parámetro una lista de tuplas \texttt{(fruta, kilo)} y retorne el costo 
+de la lista. Si aparece una fruta en la lista que no este presente en \texttt{fruitPrices} se debe 
+imprimir un mensaje de error y retornar \texttt{None}. 
+
+No cambie la variable \texttt{fruitPrices}
+\end{frame}
+
+\begin{frame}[fragile]{Ejercicio 3}
+Complete la función \texttt{shopSmart(orders,shops)} en el archivo \texttt{shopSmart.py}
+que recibe un \texttt{orderList} (similar al del anterior ejercicio) y una lista 
+de objetos \texttt{FruitShop} y retorne el objeto \texttt{FruitShop} que posea el menor costo 
+total. No cambie los nombres de archivos o de variables.
+
+Compruebe el funcionamiento usando el archivo de evaluación \texttt{autograder.py}
+
+\end{frame}
+
+\appendix
+
+% \begin{frame}[fragile]{Backup slides}
+%   Sometimes, it is useful to add slides at the end of your presentation to
+%   refer to during audience questions.
+
+%   The best way to do this is to include the \verb|appendixnumberbeamer|
+%   package in your preamble and call \verb|\appendix| before your backup slides.
+
+%   \themename will automatically turn off slide numbering and progress bars for
+%   slides in the appendix.
+% \end{frame}
+
+
+\end{document}

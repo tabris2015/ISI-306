@@ -1,0 +1,175 @@
+\documentclass[10pt]{beamer}
+
+\usepackage[spanish, mexico]{babel}
+\usepackage[utf8]{inputenc}
+
+\usetheme[progressbar=frametitle]{metropolis}
+\usepackage{appendixnumberbeamer}
+
+\usepackage{booktabs}
+\usepackage[scale=2]{ccicons}
+
+\usepackage{tikz}
+\def\checkmark{\tikz\fill[scale=0.4](0,.35) -- (.25,0) -- (1,.7) -- (.25,.15) -- cycle;}
+\usepackage{pgfplots}
+\usepgfplotslibrary{dateplot}
+
+\usepackage{xspace}
+\newcommand{\themename}{\textbf{\textsc{metropolis}}\xspace}
+
+%%
+\usepackage{color}
+\definecolor{lstgrey}{rgb}{0.95,0.95,0.95}
+\definecolor{mygreen}{RGB}{28,172,0} % color values Red, Green, Blue
+\definecolor{mylilas}{RGB}{170,55,241}
+
+\usepackage{listings}
+\lstset{language=Python,
+       backgroundcolor=\color{lstgrey},
+       frame=single,
+       basicstyle=\footnotesize\ttfamily,
+       captionpos=b,
+       tabsize=2,
+  }
+
+\lstset{language=Python,%
+  %basicstyle=\color{red},
+  breaklines=true,%
+  morekeywords={python2tikz},
+  keywordstyle=\color{blue},%
+  morekeywords=[2]{1}, keywordstyle=[2]{\color{black}},
+  identifierstyle=\color{black},%
+  stringstyle=\color{mylilas},
+  commentstyle=\color{mygreen},%
+  showstringspaces=false,%without this there will be a symbol in the places where there is a space
+  numbers=left,%
+  numberstyle={\tiny \color{black}},% size of the numbers
+  numbersep=9pt, % this defines how far the numbers are from the text
+  emph=[1]{for,end,break},emphstyle=[1]\color{red}, %some words to emphasise
+  %emph=[2]{word1,word2}, emphstyle=[2]{style},    
+}
+%
+
+\lstset{language=C,
+       backgroundcolor=\color{lstgrey},
+       frame=single,
+       basicstyle=\footnotesize\ttfamily,
+       captionpos=b,
+       tabsize=2,
+  }
+
+\lstset{language=C,%
+  %basicstyle=\color{red},
+  breaklines=true,%
+  morekeywords={c2tikz},
+  keywordstyle=\color{blue},%
+  morekeywords=[2]{1}, keywordstyle=[2]{\color{black}},
+  identifierstyle=\color{black},%
+  stringstyle=\color{mylilas},
+  commentstyle=\color{mygreen},%
+  showstringspaces=false,%without this there will be a symbol in the places where there is a space
+  numbers=left,%
+  numberstyle={\tiny \color{black}},% size of the numbers
+  numbersep=9pt, % this defines how far the numbers are from the text
+  emph=[1]{for,end,break},emphstyle=[1]\color{red}, %some words to emphasise
+  %emph=[2]{word1,word2}, emphstyle=[2]{style},    
+}
+%
+
+
+\title{ISI437 - Inteligencia Artificial}
+\subtitle{Aprendizaje Automático - Conceptos básicos}
+\date{\today}
+% \date{}
+\author{Ing. Jose Eduardo Laruta Espejo}
+\institute{Universidad La Salle - Bolivia}
+% \titlegraphic{\hfill\includegraphics[height=1.5cm]{logo.pdf}}
+
+\begin{document}
+
+\maketitle
+
+\begin{frame}[allowframebreaks]{Contenido}
+  \setbeamertemplate{section in toc}[sections numbered]
+  \tableofcontents[]
+\end{frame}
+
+%%%
+
+\section{Aprendizaje Automático}
+\begin{frame}
+  \frametitle{Introducción}
+
+  \begin{itemize}
+    \item Existen patrones dentro de los datos que usamos a diario.
+    \item Usualmente no somos capaces de visualizar información oculta o en muchas dimensiones.
+    \item A veces, se necesitan modelos abstractos sobre la naturaleza de los datos.
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Introducción}
+
+  A diferencia de los enfoques anteriormente estudiados, el aprendizaje automático 
+  o \textit{machine learning} tiene que ver con la Inteligencia relacionada a la memoria, 
+  que está asociada a datos y no a cálculos (simulación)\footnote{Nota: en el caso del aprendizaje por refuerzo, se toma un enfoque híbrido con una mezcla de simulación y datos}.
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Tipos de aprendizaje automático}
+  En general, se puede dividir el estudio del aprendizaje automático en 3 principales categorías:
+  \begin{itemize}
+    \item Aprendizaje Supervisado.
+    \item Aprendizaje no Supervisado.
+    \item Aprendizaje por refuerzo.
+  \end{itemize}
+  
+  Se detallará cada una de estas categorías a continuación.
+
+\end{frame}
+
+\section{Tipos de aprendizaje automático}
+\begin{frame}
+  \frametitle{Ejemplo:}
+
+  %foto de bebe
+
+\end{frame}
+\subsection{Aprendizaje supervisado}
+\begin{frame}
+  \frametitle{Aprendizaje supervisado}
+  \begin{itemize}
+    \item Conjunto de datos etiquetados previamente.
+    \item Mientras más datos, mejores son los resultados.
+    \item Se busca
+  \end{itemize}
+
+\end{frame}
+\subsection{Aprendizaje no supervisado}
+\subsection{Aprendizaje por refuerzo}
+\subsection{Regresión}
+
+
+{\setbeamercolor{palette primary}{fg=black, bg=yellow}
+\begin{frame}[standout]
+  Demo Time
+  \begin{itemize}
+    \item \href{http://math.hws.edu/eck/jsdemo/jsGeneticAlgorithm.html}{demo1}
+    \item \href{https://rednuht.org/genetic_walkers/}{demo2}
+    \item \href{https://rednuht.org/genetic_cars_2/}{demo3}
+  \end{itemize}
+\end{frame}
+}
+
+{\setbeamercolor{palette primary}{fg=black, bg=yellow}
+\begin{frame}[standout]
+  Preguntas?
+\end{frame}
+}
+
+\appendix
+
+
+\end{document}

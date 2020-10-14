@@ -1,0 +1,360 @@
+\documentclass[10pt]{beamer}
+
+\usepackage[spanish, mexico]{babel}
+\usepackage[utf8]{inputenc}
+
+\usetheme[progressbar=frametitle]{metropolis}
+\usepackage{appendixnumberbeamer}
+
+\usepackage{booktabs}
+\usepackage[scale=2]{ccicons}
+
+\usepackage{pgfplots}
+\usepgfplotslibrary{dateplot}
+
+\usepackage{xspace}
+\newcommand{\themename}{\textbf{\textsc{metropolis}}\xspace}
+
+%%
+\usepackage{color}
+\definecolor{lstgrey}{rgb}{0.95,0.95,0.95}
+\definecolor{mygreen}{RGB}{28,172,0} % color values Red, Green, Blue
+\definecolor{mylilas}{RGB}{170,55,241}
+
+\usepackage{listings}
+\lstset{language=Python,
+       backgroundcolor=\color{lstgrey},
+       frame=single,
+       basicstyle=\footnotesize\ttfamily,
+       captionpos=b,
+       tabsize=2,
+  }
+
+\lstset{language=Python,%
+  %basicstyle=\color{red},
+  breaklines=true,%
+  morekeywords={python2tikz},
+  keywordstyle=\color{blue},%
+  morekeywords=[2]{1}, keywordstyle=[2]{\color{black}},
+  identifierstyle=\color{black},%
+  stringstyle=\color{mylilas},
+  commentstyle=\color{mygreen},%
+  showstringspaces=false,%without this there will be a symbol in the places where there is a space
+  numbers=left,%
+  numberstyle={\tiny \color{black}},% size of the numbers
+  numbersep=9pt, % this defines how far the numbers are from the text
+  emph=[1]{for,end,break},emphstyle=[1]\color{red}, %some words to emphasise
+  %emph=[2]{word1,word2}, emphstyle=[2]{style},    
+}
+%
+
+\lstset{language=C,
+       backgroundcolor=\color{lstgrey},
+       frame=single,
+       basicstyle=\footnotesize\ttfamily,
+       captionpos=b,
+       tabsize=2,
+  }
+
+\lstset{language=C,%
+  %basicstyle=\color{red},
+  breaklines=true,%
+  morekeywords={c2tikz},
+  keywordstyle=\color{blue},%
+  morekeywords=[2]{1}, keywordstyle=[2]{\color{black}},
+  identifierstyle=\color{black},%
+  stringstyle=\color{mylilas},
+  commentstyle=\color{mygreen},%
+  showstringspaces=false,%without this there will be a symbol in the places where there is a space
+  numbers=left,%
+  numberstyle={\tiny \color{black}},% size of the numbers
+  numbersep=9pt, % this defines how far the numbers are from the text
+  emph=[1]{for,end,break},emphstyle=[1]\color{red}, %some words to emphasise
+  %emph=[2]{word1,word2}, emphstyle=[2]{style},    
+}
+%
+
+
+\title{Introducción a la programación con Python 3}
+\subtitle{Introducción y generalidades}
+\date{\today}
+% \date{}
+\author{Ing. Jose Eduardo Laruta Espejo}
+\institute{Universidad La Salle}
+% \titlegraphic{\hfill\includegraphics[height=1.5cm]{../img/lasalle}}
+
+\begin{document}
+
+\maketitle
+
+\begin{frame}[allowframebreaks]{Contenido}
+  \setbeamertemplate{section in toc}[sections numbered]
+  \tableofcontents[]
+\end{frame}
+
+%%%
+
+\section{Introducción a Python3}
+\subsection{Historia y características}
+
+\begin{frame}{Python}
+    \begin{columns}
+        \begin{column}{0.6\textwidth}
+            Es un lenguaje de programación interpretado que tiene como filosofía la simplicidad y 
+            legibilidad del código.
+            
+            Actualmente es uno de los lenguajes más populares según distintos rankings.
+            
+            Existen aplicaciones en todas las areas de la tecnología usando python.
+
+        \end{column}
+        \begin{column}{0.4\textwidth}
+            \begin{figure}[!h] 
+                \centering
+                \includegraphics[width=0.95\textwidth]{img/logo}
+                % \caption[Algunas aplicaciones de la visión artificial]{Algunas aplicaciones de la visión artificial. Fuente: \cite{Szeliski2011} }
+            \end{figure}
+        \end{column}
+    \end{columns}
+    
+\end{frame}
+
+\begin{frame}{Historia}
+    \begin{columns}
+        \begin{column}{0.6\textwidth}
+            \begin{itemize}
+                \item La primera versión pública (0.9) fue publicada en 1991.
+                \item La versión 1.0 fue publicada en 1994.
+                \item La versión 2.0 se lanzó en 2000.
+                \item La versión 3.0 se lanza en 2009.
+            \end{itemize}
+            Actualmente, la versión 2.7 ha sido discontinuada y la versión 3.5+ es la recomendada 
+            para nuevos desarrollos.
+        \end{column}
+        \begin{column}{0.4\textwidth}
+            \begin{figure}[!h] 
+                \centering
+                \includegraphics[width=0.95\textwidth]{img/logo}
+                % \caption[Algunas aplicaciones de la visión artificial]{Algunas aplicaciones de la visión artificial. Fuente: \cite{Szeliski2011} }
+            \end{figure}
+        \end{column}
+    \end{columns}
+    
+\end{frame}
+\begin{frame}{Historia}
+    \begin{columns}
+        \begin{column}{0.6\textwidth}
+            A partir de la década de los 2010, Python gana tracción por su facilidad de uso y el 
+            desarrollo de librerías y módulos para el desarrollo de algoritmos de inteligencia artificial 
+            y deep learning. 
+
+            En la actualidad, Python es considerado como un lenguaje fundamental en AI y Data Science.
+
+        \end{column}
+        \begin{column}{0.4\textwidth}
+            \begin{figure}[!h] 
+                \centering
+                \includegraphics[width=0.95\textwidth]{img/logo}
+                % \caption[Algunas aplicaciones de la visión artificial]{Algunas aplicaciones de la visión artificial. Fuente: \cite{Szeliski2011} }
+            \end{figure}
+        \end{column}
+    \end{columns}
+    
+\end{frame}
+
+\begin{frame}{Características Principales}
+    \begin{columns}
+        \begin{column}{0.6\textwidth}
+            Python ha ganado tracción por las siguientes razones:
+            \begin{itemize}
+                \item Sintaxis simple y limpia.
+                \item Programación multiparadigma.
+                \item Tipado dinámico.
+                \item Lenguaje interpretado.
+                \item Open Source.
+                \item Modo interactivo.
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.4\textwidth}
+            \begin{figure}[!h] 
+                \centering
+                \includegraphics[width=1.35\textwidth]{img/logo2}
+            \end{figure}
+        \end{column}
+    \end{columns}
+    
+\end{frame}
+
+\begin{frame}{¿Dónde se usa Python?}
+    \begin{columns}
+        \begin{column}{0.6\textwidth}
+            Python es ampliamente usado en diversos campos:
+            \begin{itemize}
+                \item Desarrollo web.
+                \item Investigación científica y numérica.
+                \item Educación.
+                \item Desarrollo de videojuegos.
+                \item Interfaces gráficas.
+                \item Automatización.
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.4\textwidth}
+            \begin{figure}[!h] 
+                \centering
+                \includegraphics[width=1.35\textwidth]{img/logo2}
+            \end{figure}
+        \end{column}
+    \end{columns}
+    
+\end{frame}
+%%%%
+\begin{frame}[fragile]{Comparación Python vs C++}
+    C:
+    \begin{lstlisting}
+        #include <stdio.h>
+        int main(int argc, char **argv)
+        {
+            printf("hola mundo");
+            return 0;
+        }
+    \end{lstlisting}
+    Python:
+    \begin{lstlisting}
+        print("hola mundo")
+    \end{lstlisting}
+\end{frame}
+
+\subsection{Lenguajes compilados vs interpretados}
+\begin{frame}{Lenguajes Compilados}
+    En un lenguaje compilado, un archivo de \alert{código fuente} 
+    es procesado por un programa especial llamado \alert{compilador} que 
+    se encarga de transformar el código en un programa \alert{ejecutable}.
+    \begin{itemize}
+        \item C++.
+        \item C.
+        \item Java.
+        \item Rust.
+    \end{itemize}
+    La ventaja es que el compilador puede optimizar el código fuente y 
+    generar ejecutables muy eficientes.
+\end{frame}
+
+\begin{frame}{Lenguajes Interpretados}
+    En un lenguaje interpretado, no existe un compilador que convierte código fuente
+    en ejecutables. Se tiene un programa \alert{intérprete} que ejecuta los comandos dados
+    uno por uno de forma \alert{inmediata}.
+    \begin{itemize}
+        \item Python.
+        \item Bash.
+        \item Php.
+    \end{itemize}
+    La ventaja es que se puede iterar en el desarrollo de forma más rápida.
+\end{frame}
+\subsection{Instalación en Windows}
+\begin{frame}{Descarga}
+    El entorno de ejecución de Python se puede descargar como un \alert{instalador} en Windows. Este instalador 
+    cuenta con todo lo necesario para comenzar a desarrollar.
+
+    El instalador se puede descargar de la página \href{https://www.python.org/downloads/windows/}{python.org}
+
+    En Linux, Python viene instalado \alert{por defecto}.
+
+\end{frame}
+
+\subsection{El intérprete de python}
+
+\begin{frame}
+    \frametitle{El intérprete de python}
+
+    El intérprete de python es un programa que se encarga de ejecutar 
+    líneas de instrucción escritas en Python. 
+
+    Este puede ejecutar los comandos según vayan apareciendo en un archivo 
+    o según se vayan introduciendo en un shell interactivo.
+    
+
+\end{frame}
+
+\subsection{Operadores aritméticos}
+\begin{frame}
+    \frametitle{Operadores aritméticos}
+    En python se tienen los distintos operadores aritméticos.
+    \begin{itemize}
+        \item \texttt{+}: Adición.
+        \item \texttt{-}: Resta.
+        \item \texttt{*}: Multiplicación.
+        \item \texttt{/}: División.
+        \item \texttt{//}: División entera.
+        \item \texttt{\%}: Módulo.
+        \item \texttt{**}: Exponenciación.
+    \end{itemize}
+\end{frame}
+\subsection{Variables 1}
+\begin{frame}[fragile]
+    \frametitle{Variables}
+    Las variables se declaran usando el operador de asignación \texttt{=}.
+
+    \begin{lstlisting}
+        a = 1 # variable entera
+        b = 4 
+        c = a + b
+    \end{lstlisting}   
+    En python, el tipo de la variable se deduce del contenido.
+    \begin{lstlisting}
+        a = 'hola'
+        b = 4
+        c = a * b
+    \end{lstlisting} 
+
+\end{frame}
+
+\section{Sintaxis y características del lenguaje}
+\subsection{Hola mundo en python}
+\subsection{Tipos de datos}
+\subsection{Operadores aritméticos y lógicos}
+\subsection{Variables 2}
+\subsection{Contenedores y colecciones}
+\subsection{Ejecución de scripts}
+\subsection{Entrada y salida de datos}
+
+\section{Programación con Python 3}
+\subsection{Funciones}
+\subsection{Control de flujo}
+\subsection{Argumentos desde línea de comandos}
+\subsection{Manejo de archivos}
+
+\section{Introducción a la programación orientada a objetos}
+\subsection{Clases y objetos}
+\subsection{Modularización y encapsulamiento}
+\subsection{Herencia y polimorfismo}
+\subsection{Módulos de python}
+
+\section{Tópicos avanzados}
+\subsection{Web Scrapping*}
+\subsection{Interfaces Gráficas*}
+\subsection{Videojuegos*}
+
+{\setbeamercolor{palette primary}{fg=black, bg=yellow}
+\begin{frame}[standout]
+  Preguntas?
+\end{frame}
+}
+
+\appendix
+
+% \begin{frame}[fragile]{Backup slides}
+%   Sometimes, it is useful to add slides at the end of your presentation to
+%   refer to during audience questions.
+
+%   The best way to do this is to include the \verb|appendixnumberbeamer|
+%   package in your preamble and call \verb|\appendix| before your backup slides.
+
+%   \themename will automatically turn off slide numbering and progress bars for
+%   slides in the appendix.
+% \end{frame}
+
+\begin{frame}[allowframebreaks]{Referencias}
+.
+\end{frame}
+
+\end{document}
